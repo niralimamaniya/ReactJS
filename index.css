@@ -3,3 +3,29 @@
     background-color: indigo;
     padding: 8px;
 }
+body{
+    margin: 0;
+}
+.title{
+    padding: 0 10px;
+    margin:0;
+    width: 98.5vw;
+    height: 8vh;
+    background-color: #cccccc;
+    display: flex;
+    justify-content: space-between;
+    justify-items: center;
+    align-items: center;
+}
+.search-bar{
+    width: 200px;
+    height: 20px;
+    border-radius: 2px;
+    border: 1px solid #ccc;
+}
+.bell{
+    font-size: large;
+}
+.user{
+    font-size: large;
+}
