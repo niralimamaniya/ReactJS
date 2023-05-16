@@ -1,16 +1,25 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-const parent = 
-    React.createElement("div",{id:"parent"},[
-        React.createElement("div",{id:"child"},[
-            React.createElement("h1",{},"I am h1 tag of child"),
-            React.createElement("h2",{},"I am h2 tag of child")
-        ]),
-        React.createElement("div",{id:"child2"},[
-            React.createElement("h1",{},"I am h1 tag of child2"),
-            React.createElement("h2",{},"I am h2 tag of child2")
-        ])
-    ]);
 
+const Title = () => (
+    <h1 className="head">
+        Namaste React from JSX
+    </h1>
+);
+
+const HeadingComponent = () => (
+    
+    <React.Fragment>
+        <div id="container">
+            {Title()}
+            <h1 className="head">
+                Namaste React from Component
+            </h1>   
+        </div>
+        <div></div>
+    </React.Fragment>
+    
+);
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(parent);
+
+root.render(<HeadingComponent/>);
