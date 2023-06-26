@@ -31,3 +31,7 @@
  - Normal JS Utility functions
  - useState() - super powerful state variables, used to create state variables
  - useEffect()
+
+# Two types of routing
+ - Client side Routing
+ - Server side Routing
