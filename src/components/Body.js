@@ -25,7 +25,9 @@ const Body = () => {
         setFilteredRestaurants(json?.data?.cards[2]?.data?.data?.cards);
     }
 
-    return listOfRestaurants?.length === 0 ? <Shimmer/> : (
+    return listOfRestaurants?.length === 0 ? (
+         <Shimmer/> 
+    ) : (
         <div className="body">   
             <div className="filter-container">         
                 <div className="filters">
@@ -61,9 +63,14 @@ const Body = () => {
             <div className="res-container">
                 {/* Resto card */}
                 {
-                  filteredRestaurants.map((restaurant) => 
-                    <Link key={restaurant.data.id} to={"/restaurants/"+restaurant.data.id}><RestaurantCard resData={restaurant}/></Link>
-                  )
+                  filteredRestaurants.map((restaurant) => (
+                    <Link 
+                        key={restaurant.data.id} 
+                        to={"/restaurants/"+restaurant.data.id}
+                    >
+                    <RestaurantCard resData={restaurant}/>
+                    </Link>
+                  ))
                 }
             </div>
         </div>

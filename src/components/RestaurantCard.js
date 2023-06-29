@@ -10,8 +10,8 @@ const RestaurantCard = (props) => {
            cloudinaryImageId}/>
             <h3>{name}</h3>
             <p>{cuisines.join(", ")}</p>
-            <h5>{costForTwoString}</h5>
             <h5>{avgRating} stars</h5>
+            <h5>{costForTwoString}</h5>
             <h5>{deliveryTime} minutes</h5>
         </div>
     );
