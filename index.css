@@ -1,3 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+@layer base {
+    html {
+      font-family: Proxima Nova, system-ui, sans-serif;
+    }
+  }
+/* 
 .header{
     display: flex;
     justify-content: space-between;
@@ -23,9 +37,6 @@
     margin: 10px;
 }
 
-/* .body{
-    border: 1px solid black;
-} */
 .res-container{
     display:flex;
     flex-wrap: wrap;
@@ -94,4 +105,4 @@ h5,h3{
 .user-card{
     padding: 10px;
     border: 1px solid black;
-}
+} */
