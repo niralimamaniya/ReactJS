@@ -1,11 +1,14 @@
 import { LOGO_URL } from "../utils/constants";
 import Logo from "../assets/delo-logo.png";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import UserContext from "../utils/UserContext";
 
 const Header = () => {
 
     const [btnName, setbtnName] = useState("Login");
+
+    const {loggedInUser} = useContext(UserContext);
 
     return (
         <div className="flex justify-between shadow-lg bg-white">
@@ -32,11 +35,15 @@ Home</Link>
                 <li className="px-4 font-medium hover:text-orange-500">
                     <Link to="/cart" className="flex">Cart</Link>
                 </li>
+                
                 <button className="px-4 py-1 mx-4 rounded font-medium bg-orange-400 text-white"
                     onClick={() => {
                         btnName === "Login" ? setbtnName("Logout") : setbtnName("Login");
                     }}
                 >{btnName}</button>
+                <li className="px-4 font-medium">
+                    {loggedInUser}
+                </li>
             </ul>
             </div>
         </div>

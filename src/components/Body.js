@@ -1,4 +1,4 @@
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, {withPromotedLabel} from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
@@ -19,11 +19,13 @@ const Body = () => {
         
         const json = await data.json();
 
-        console.log(json);
+        // console.log(json);
 
         setListOfRestaurants(json?.data?.cards[2]?.data?.data?.cards);
         setFilteredRestaurants(json?.data?.cards[2]?.data?.data?.cards);
     }
+
+    const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
 
     const onlineStatus = useOnlineStatus();
     if(onlineStatus === false){
@@ -36,14 +38,13 @@ const Body = () => {
     return listOfRestaurants?.length === 0 ? (
          <Shimmer/> 
     ) : (
-        <div className="body">   
-            <div className="filter-container flex mx-16 my-2 p-4 justify-between">   
-                <div className="search-container">
-                    <input type="text" placeholder="Search for restaurants and cuisines" className="py-1 px-2 w-96 border border-solid border-gray-300 rounded focus:outline-none focus:border-gray-500" value={searchText} onChange={(e) => {
+        <div className="body">  
+            <div className="mx-16 mt-10 mb-6 p-2 text-center">
+                    <input type="text" placeholder="Search for restaurants and cuisines" className="py-1 px-2 w-9/12 border border-solid border-gray-300 rounded focus:outline-none focus:border-gray-500" value={searchText} onChange={(e) => {
                         setSearchText(e.target.value);
                     }}></input>
 
-                    <button className="px-2 py-2 m-4 rounded text-white bg-orange-400" onClick={() => {
+                    <button className="px-2 py-2 mx-2 rounded text-white bg-orange-400" onClick={() => {
                         const filteredRestaurants = listOfRestaurants.filter(
                             (restaurant) => restaurant.data.name.toLowerCase().includes(searchText.toLowerCase()) ||
                              restaurant.data.cuisines.toString().toLowerCase().includes(searchText.toLowerCase()) 
@@ -51,12 +52,40 @@ const Body = () => {
 
                         setFilteredRestaurants(filteredRestaurants);
                     }}>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor" className="w-5 h-4"><path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" /></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor" className="w-4 h-[14px]"><path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" /></svg>
                     </button>
-                </div>  
+            </div>   
 
-                <div className="filters">
-                    <button className="px-3 py-1 m-4 border-b-[1px] border-b-gray-300 border-gray-500 hover:text-orange-500" 
+            <div className="flex justify-between mx-16 my-1 p-3">   
+                <div >
+                    <p className="px-3 py-1 m-2 font-semibold text-xl">
+                        {filteredRestaurants.length} restaurants
+                    </p>
+                </div>
+                <div>
+                <button className="px-3 py-1 m-2 border-b-[1px] border-b-gray-300 border-gray-500 hover:text-orange-500" 
+                        onClick={() =>{
+                            const filteredRestaurants = listOfRestaurants.filter(
+                                (restaurant) => restaurant.data
+                        )
+                        setFilteredRestaurants(filteredRestaurants);
+                        } 
+                        }
+                    >
+                    All
+                    </button>
+                    <button className="px-3 py-1 m-2 border-b-[1px] border-b-gray-300 border-gray-500 hover:text-orange-500" 
+                        onClick={() =>{
+                            const filteredRestaurants = listOfRestaurants.filter(
+                                (restaurant) => restaurant.data.veg === true
+                        )
+                        setFilteredRestaurants(filteredRestaurants);
+                        } 
+                        }
+                    >
+                    Pure Veg
+                    </button>
+                    <button className="px-3 py-1 m-2 border-b-[1px] border-b-gray-300 border-gray-500 hover:text-orange-500" 
                         onClick={() =>{
                             const filteredRestaurants = listOfRestaurants.filter(
                                 (restaurant) => restaurant.data.avgRating > 4
@@ -65,9 +94,51 @@ const Body = () => {
                         } 
                         }
                     >
-                    Ratings 4.0+
+                    4.0+
+                    </button>
+                    {/* <button className="px-3 py-1 m-4 border-b-[1px] border-b-gray-300 border-gray-500 hover:text-orange-500">
+                        Sort By    
+                    </button> */}
+                    <button className="px-3 py-1 m-2 border-b-[1px] border-b-gray-300 border-gray-500 hover:text-orange-500" 
+                        onClick={() =>{
+                            const filteredRestaurants = listOfRestaurants.filter(
+                                (restaurant) => restaurant.data.costForTwo < 30000 
+                        )
+                        setFilteredRestaurants(filteredRestaurants);
+                        } 
+                        }
+                    >
+                    Less than Rs. 300
+                    </button>
+                    <button className="px-3 py-1 m-2 border-b-[1px] border-b-gray-300 border-gray-500 hover:text-orange-500" 
+                       onClick={() =>{
+                        const filteredRestaurants = listOfRestaurants.filter(
+                            (restaurant) => restaurant.data
+                        )
+                        filteredRestaurants.sort(
+                            (res1, res2) => res1.data.costForTwo - res2.data.costForTwo)
+                        // setSortedRestaurants(sortedRestaurants)
+                        setFilteredRestaurants(filteredRestaurants);
+                        } 
+                        }
+                    >
+                    Cost: Low To High
+                    </button>
+                    <button className="px-3 py-1 m-2 border-b-[1px] border-b-gray-300 border-gray-500 hover:text-orange-500" 
+                       onClick={() =>{
+                        const filteredRestaurants = listOfRestaurants.filter(
+                            (restaurant) => restaurant.data
+                        )
+                        filteredRestaurants.sort(
+                            (res1, res2) => res2.data.costForTwo - res1.data.costForTwo)
+                        setFilteredRestaurants(filteredRestaurants);
+                        } 
+                        }
+                    >
+                    Cost: High To Low
                     </button>
                 </div> 
+                
             </div>
             <div className="flex flex-wrap mx-16 pt-6 gap-x-7 gap-y-12 border-t-[1px] border-gray-300">
                 {/* Resto card */}
@@ -77,7 +148,7 @@ const Body = () => {
                         key={restaurant.data.id} 
                         to={"/restaurants/"+restaurant.data.id}
                     >
-                    <RestaurantCard resData={restaurant}/>
+                    {restaurant.data.promoted ? <RestaurantCardPromoted resData={restaurant}/> : <RestaurantCard resData={restaurant}/>}
                     </Link>
                   ))
                 }
