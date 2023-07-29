@@ -18,15 +18,17 @@ const Body = () => {
     
     // Fetching restaurants data from API
     const fetchData = async () => {
-        const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.5177559&lng=73.81511119999999&page_type=DESKTOP_WEB_LISTING");
+        const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.5177559&lng=73.81511119999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
         
         const json = await data.json();
 
         console.log(json);
 
-        setCarousel(json?.data?.cards[1]);
-        setListOfRestaurants(json?.data?.cards[2]?.data?.data?.cards);
-        setFilteredRestaurants(json?.data?.cards[2]?.data?.data?.cards);
+        // setCarousel(json?.data?.cards[1]);
+        // setListOfRestaurants(json?.data?.cards[2]?.data?.data?.cards);
+        setListOfRestaurants(json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        // setFilteredRestaurants(json?.data?.cards[2]?.data?.data?.cards);
+        setFilteredRestaurants(json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     }
 
     const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
@@ -69,7 +71,7 @@ const Body = () => {
                 <div className="p-2 font-semibold text-2xl">
                     {/* Total Number of restaurants */}
                     <p>
-                        {filteredRestaurants.length} restaurants
+                        {/* {filteredRestaurants.length} restaurants */}
                     </p>
                 </div>
                 <div>
@@ -145,10 +147,10 @@ const Body = () => {
                 {
                   filteredRestaurants.map((restaurant) => (
                     <Link 
-                        key={restaurant.data.id} 
-                        to={"/restaurants/"+restaurant.data.id}
+                        key={restaurant?.info.id} 
+                        to={"/restaurants/"+restaurant?.info.id}
                     >
-                    {restaurant.data.promoted ? <RestaurantCardPromoted resData={restaurant}/> : <RestaurantCard resData={restaurant}/>}
+                    {restaurant?.info.promoted ? <RestaurantCardPromoted resData={restaurant?.info}/> : <RestaurantCard resData={restaurant?.info}/>}
                     </Link>
                   ))
                 }
