@@ -5,7 +5,7 @@ import { CDN_URL } from "../utils/constants";
 
 const RestaurantCard = (props) => {
     const {resData} = props;
-    const { cloudinaryImageId, name, cuisines, costForTwoString, avgRating, deliveryTime} = resData
+    const { cloudinaryImageId, name, cuisines, costForTwo, avgRating, sla} = resData
     return(
         
         <div className="w-72 p-5 border border-solid border-white hover:border-gray-300 hover:shadow-lg">
@@ -20,8 +20,8 @@ const RestaurantCard = (props) => {
                 "px-1 text-white font-[icomoon]"}>
                     <FontAwesomeIcon icon={faStar} size="sm" /> {avgRating}
                 </span>
-            <p className="font-light text-gray-500">{deliveryTime} MINS</p>
-            <p className="font-light text-gray-500">{costForTwoString}</p>
+            <p className="font-light text-gray-500">{sla?.deliveryTime} MINS</p>
+            <p className="font-light text-gray-500">{costForTwo}</p>
                 </div>
                 
         </div>

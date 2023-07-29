@@ -18,16 +18,13 @@ const Body = () => {
     
     // Fetching restaurants data from API
     const fetchData = async () => {
-        const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.5177559&lng=73.81511119999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
-        
-        const json = await data.json();
 
+        const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.5177559&lng=73.81511119999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");        
+        const json = await data.json();
         console.log(json);
 
         // setCarousel(json?.data?.cards[1]);
-        // setListOfRestaurants(json?.data?.cards[2]?.data?.data?.cards);
         setListOfRestaurants(json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-        // setFilteredRestaurants(json?.data?.cards[2]?.data?.data?.cards);
         setFilteredRestaurants(json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     }
 
@@ -40,8 +37,6 @@ const Body = () => {
             <h3>Looks like you're offline! Please check your internet connection</h3>
         )
     }
-    console.log(listOfRestaurants);
-
 
     return listOfRestaurants?.length === 0 ? (
          <Shimmer/> 
@@ -57,8 +52,8 @@ const Body = () => {
 
                     <button className="px-2 py-2 mx-2 rounded text-white bg-orange-400" onClick={() => {
                         const filteredRestaurants = listOfRestaurants.filter(
-                            (restaurant) => restaurant.data.name.toLowerCase().includes(searchText.toLowerCase()) ||
-                             restaurant.data.cuisines.toString().toLowerCase().includes(searchText.toLowerCase()) 
+                            (restaurant) => restaurant?.info.name.toLowerCase().includes(searchText.toLowerCase()) ||
+                            restaurant?.info.cuisines.toString().toLowerCase().includes(searchText.toLowerCase()) 
                         );
 
                         setFilteredRestaurants(filteredRestaurants);
@@ -71,7 +66,7 @@ const Body = () => {
                 <div className="p-2 font-semibold text-2xl">
                     {/* Total Number of restaurants */}
                     <p>
-                        {/* {filteredRestaurants.length} restaurants */}
+                        {filteredRestaurants.length} restaurants
                     </p>
                 </div>
                 <div>
@@ -79,7 +74,7 @@ const Body = () => {
                 <button className="mt-4 pb-[7px] px-3 text-gray-700 hover:border-b-[1px] border-b-gray-500"
                         onClick={() =>{
                             const filteredRestaurants = listOfRestaurants.filter(
-                                (restaurant) => restaurant.data
+                                (restaurant) => restaurant?.info
                         )
                         setFilteredRestaurants(filteredRestaurants);
                         } 
@@ -89,7 +84,7 @@ const Body = () => {
                 <button className="mt-4 pb-[7px] px-3 text-gray-700 hover:border-b-[1px] border-b-gray-500" 
                         onClick={() =>{
                             const filteredRestaurants = listOfRestaurants.filter(
-                                (restaurant) => restaurant.data.veg === true
+                                (restaurant) => restaurant?.info.veg === true
                         )
                         setFilteredRestaurants(filteredRestaurants);
                         } 
@@ -99,7 +94,7 @@ const Body = () => {
                 <button className="mt-4 pb-[7px] px-3 text-gray-700 hover:border-b-[1px] border-b-gray-500" 
                         onClick={() =>{
                             const filteredRestaurants = listOfRestaurants.filter(
-                                (restaurant) => restaurant.data.avgRating >= 4
+                                (restaurant) => restaurant?.info.avgRating >= 4
                         )
                         setFilteredRestaurants(filteredRestaurants);
                         } 
@@ -109,7 +104,7 @@ const Body = () => {
                 <button className="mt-4 pb-[7px] px-3 text-gray-700 hover:border-b-[1px] border-b-gray-500" 
                         onClick={() =>{
                             const filteredRestaurants = listOfRestaurants.filter(
-                                (restaurant) => restaurant.data.costForTwo < 30000 
+                                (restaurant) => parseInt(restaurant?.info.costForTwo.match(/\d+/)[0], 10) < 300
                         )
                         setFilteredRestaurants(filteredRestaurants);
                         } 
@@ -119,10 +114,13 @@ const Body = () => {
                 <button className="mt-4 pb-[7px] px-3 text-gray-700 hover:border-b-[1px] border-b-gray-500"
                        onClick={() =>{
                         const filteredRestaurants = listOfRestaurants.filter(
-                            (restaurant) => restaurant.data
+                            (restaurant) => restaurant?.info
                         )
+            
                         filteredRestaurants.sort(
-                            (res1, res2) => res1.data.costForTwo - res2.data.costForTwo)
+                            (res1, res2) => parseInt(res1?.info.costForTwo.match(/\d+/)[0], 10) -
+                            parseInt(res2?.info.costForTwo.match(/\d+/)[0], 10))
+                        
                         setFilteredRestaurants(filteredRestaurants);
                         } 
                         }
@@ -131,10 +129,11 @@ const Body = () => {
                 <button className="mt-4 pb-[7px] px-3 text-gray-700 hover:border-b-[1px] border-b-gray-500" 
                        onClick={() =>{
                         const filteredRestaurants = listOfRestaurants.filter(
-                            (restaurant) => restaurant.data
+                            (restaurant) => restaurant?.info
                         )
                         filteredRestaurants.sort(
-                            (res1, res2) => res2.data.costForTwo - res1.data.costForTwo)
+                            (res1, res2) => parseInt(res2?.info.costForTwo.match(/\d+/)[0], 10) - 
+                            parseInt(res1?.info.costForTwo.match(/\d+/)[0], 10))
                         setFilteredRestaurants(filteredRestaurants);
                         } 
                         }

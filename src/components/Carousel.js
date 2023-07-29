@@ -7,7 +7,7 @@ const Carousel = ({items}) => {
     const cardsData = items?.data?.data?.cards
 
     const carouselId = ['pneknawbadtvceqzwiep','zpkkdkmvlj5cuvqbc50t','s5ug2key6e2sptaxku5v','ifi2lbzxeu1hvsqrsip3'];
-    console.log(cardsData);
+    // console.log(cardsData);
     return (
         <div className="bg-gray-900 flex justify-center items-center">
             
