@@ -1,4 +1,5 @@
 import CategoryItems from "./CategoryItems";
+import ItemsShimmer from "./ItemsShimmer";
 
 const RestaurantCategory = ({data, showItems, setShowIndex}) => {
 
@@ -6,7 +7,7 @@ const RestaurantCategory = ({data, showItems, setShowIndex}) => {
         setShowIndex();
     } 
 
-    return (
+    return  (
         <div>
             <div className="py-4 border-b-8 border-gray-100">
                 <div className="flex justify-between cursor-pointer" 
@@ -21,7 +22,7 @@ const RestaurantCategory = ({data, showItems, setShowIndex}) => {
                         </svg>                          
                     )}
                 </div>
-
+                
                 { showItems && <CategoryItems items = {data.itemCards}/>}
             </div>
         </div>

@@ -1,5 +1,19 @@
+import { addItem } from "../utils/cartSlice";
 import { CDN_URL } from "../utils/constants";
+import { useDispatch } from "react-redux";
+import ItemsShimmer from "./ItemsShimmer";
+
+
 const CategoryItems = ({items}) => {
+
+    const dispatch = useDispatch();
+
+    const addFoodItem = (item) => {
+        dispatch(addItem(item));
+    }
+
+    
+
     return (
         <div>
             {
@@ -11,7 +25,8 @@ const CategoryItems = ({items}) => {
                             <p className="pt-3 text-sm text-gray-400">{item.card.info.description}</p>
                         </div>
                         <div className="p-5 w-3/12"> 
-                                <button className="absolute text-sm mt-[68px] mx-5 px-8 pt-1 pb-2 font-semibold border border-solid border-gray-400 text-green-500 bg-white rounded flex">
+                                <button className="absolute text-sm mt-[68px] mx-5 px-8 pt-1 pb-2 font-semibold border border-solid border-gray-400 text-green-500 bg-white rounded flex"
+                                    onClick={()=> addFoodItem(item)}>
                                     ADD 
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-2">
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
