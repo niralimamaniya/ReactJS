@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { clearCart } from "../utils/cartSlice";
-import EmptyCart from "../assets/empty-cart.png";
 import CategoryItems from './CategoryItems';
+import { Link } from "react-router-dom";
 
 const Cart = () => {
  
@@ -16,49 +16,56 @@ const Cart = () => {
         dispatch(clearCart());
     }
 
+    let totalPrice = 0;
+    cartItems.forEach((item)=> {
+        totalPrice += item.card.info.price/100;
+    })
+
     return cartItems.length == 0 ? (
-        <div className="flex justify-center">
-            <div className="w-6/12 h-6/12 flex flex-col justify-center items-center">
-                <h1 className="my-6 text-2xl font-medium tracking-wide">Your cart is Empty ☹️</h1>
-                <img src={EmptyCart} className="w-2/4 h-3/4"></img>
+        <div className="flex justify-around items-center">
+            <div className="w-6/12 flex flex-col justify-center items-center">
+                <h1 className="my-6 text-3xl font-thin ">Your cart is Empty 🥺</h1>
+                <h1 className="text-5xl font-bold" data-testid="order-now">Order your Food, Delo it now!</h1>
+                <img className="mt-6 h-60 rounded-md" src="https://ychef.files.bbci.co.uk/976x549/p0dz94rl.jpg" alt="image"></img>
+                <Link to="/">
+                    <p className="bg-orange-400 font-medium text-white px-4 py-2 mt-5 rounded-md">See Restaurants</p>
+                </Link>
             </div>
         </div>
     ) : (
 
-
-        <div className="flex flex-col justify-center items-center border border-black">
-            <div className="w-6/12 m-auto border border-black p-4">
-                <h1 className="text-center text-2xl font-semibold">Your cart</h1>
-                <button className="px-3 py-[6px] m-2 rounded bg-orange-400 text-white font-semibold" onClick={()=> clearMyCart()}>
+        <div className=" mt-4 flex flex-col justify-center items-center">
+            <div className="w-7/12 m-auto border border-gray-300 rounded p-6">
+                <div className="flex justify-between">
+                    <h1 className="text-2xl font-bold tracking-wide">YOUR CART</h1>
+                    <button className="px-2 py-1 rounded bg-orange-400 text-white " onClick={()=> clearMyCart()}>
                     Clear cart
-                </button>
-                <div>
+                    </button>
+                </div>
+                <div className="mt-4">
                     <CategoryItems items={cartItems}/>
+                    <div className="pr-8 mt-4">
+                        <h1 className="font-bold">Bill Details</h1>
+                        <div className="mt-2 text-sm">
+                            <div className="flex w-2/5 py-2 justify-between">
+                                <span>Item Total : </span>
+                                <span>{totalPrice}</span>
+                            </div>
+                            <div className="flex w-2/5 py-2 justify-between">
+                                <span>Delivery Fee : </span>
+                                <span>00.00</span>
+                            </div>
+                            <hr className="w-2/5  border-black border-1"/>
+                            <div className="flex w-2/5 py-2 justify-between">
+                                <span className="font-semibold tracking-wide">TO PAY : </span>
+                                <span className="font-semibold">{totalPrice}</span>
+                            </div>
+                        </div>
+                        
+                    </div>
                 </div>
             </div>            
         </div>
-        // <div className="m-4 flex justify-center">
-        //     <div className="flex justify-between py-2 my-2 text-lg items-center ">
-        //         <p className="">Your Cart</p> <hr className="" />
-        //         <button
-        //             disabled={cartItems.length > 0 ? false : true}
-        //             className="text-normal bg-red-500 text-white px-2 py-1"
-        //             onClick={() => dispatch(clearCart())}
-        //         >Clear cart</button>
-        //     </div>
-        //     <hr className="my-2 border-gray-200 border-1" />
-        //     {cartItems.map((item) => (
-        //         <div key = {item.card.info.id} className="py-2">
-        //             <div className="pt-3 flex justify-between">
-        //                 <h2>{item.card.info.name}</h2>
-        //                 <p>{(item.card.info.price/100).toFixed(2)}</p>
-        //             </div>
-        //         </div>
-        //     ))} 
-        // <div>
-
-          
-     
     )
 }
 

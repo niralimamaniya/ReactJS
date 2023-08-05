@@ -2,7 +2,7 @@ import BlackBgLogo from "../assets/delo-black-logo.png";
 
 const Footer = () => {
     return (
-        <div className="flex-shrink-0 mt-12 px-20 py-10 bg-[#0D0D0C] flex justify-between">
+        <div className="flex-shrink-0 mt-9 px-20 py-10 bg-[#0D0D0C] flex justify-between">
             <span className="text-xl">
                 <img className="w-36 h-14 rounded" src={BlackBgLogo}></img>
             </span>

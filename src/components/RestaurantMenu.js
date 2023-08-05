@@ -15,7 +15,6 @@ const RestaurantMenu = () => {
 
     if(resInfo === null) return <MenuShimmer/>  ;
 
-    console.log(resInfo);
     const {name,cuisines,areaName,sla,avgRating,totalRatingsString,costForTwoMessage} = resInfo?.cards[0]?.card?.card?.info;
 
     const categories = resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
@@ -24,8 +23,6 @@ const RestaurantMenu = () => {
         (category) => category?.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
     )
 
-
-    console.log(categories);
     return (
         <div className="mx-64 my-6 px-5 py-2 w-7/12 border border-solid border-gray-300">
             <div className="py-4 flex justify-between border-b-[1px] border-gray-300 border-dashed">
@@ -52,8 +49,6 @@ const RestaurantMenu = () => {
             </svg>
             <p>{costForTwoMessage}</p>
             </div>
-
-
             <div>
                 {categories.map((c,index) => 
                     <RestaurantCategory 
@@ -63,10 +58,7 @@ const RestaurantMenu = () => {
                         setShowIndex = {() => setShowIndex(index)}
                     />
                 )}
-            </div>           
-        
-        
-        
+            </div>                  
         </div>
 
     );

@@ -5,10 +5,11 @@ import { CDN_URL } from "../utils/constants";
 
 const RestaurantCard = (props) => {
     const {resData} = props;
+    // console.log(resData);
     const { cloudinaryImageId, name, cuisines, costForTwo, avgRating, sla} = resData
     return(
         
-        <div className="w-72 p-5 border border-solid border-white hover:border-gray-300 hover:shadow-lg">
+        <div data-testid="resCard" className="w-72 p-5 border border-solid border-white hover:border-gray-300 hover:shadow-lg">
             <img className="res-logo" src={CDN_URL+
            cloudinaryImageId}/>
             <h3 className="font-medium text-lg pt-3">{name}</h3>
@@ -20,10 +21,9 @@ const RestaurantCard = (props) => {
                 "px-1 text-white font-[icomoon]"}>
                     <FontAwesomeIcon icon={faStar} size="sm" /> {avgRating}
                 </span>
-            <p className="font-light text-gray-500">{sla?.deliveryTime} MINS</p>
-            <p className="font-light text-gray-500">{costForTwo}</p>
-                </div>
-                
+                <p className="font-light text-gray-500">{sla?.deliveryTime} MINS</p>
+                <p className="font-light text-gray-500">{costForTwo}</p>
+            </div>       
         </div>
     );
 };

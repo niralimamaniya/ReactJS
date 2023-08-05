@@ -1,5 +1,4 @@
 import { useState } from "react";
-import ContactUs from "../assets/contact-us.jpg";
 
 const Contact = () => {
 
@@ -13,7 +12,7 @@ const Contact = () => {
   return (
     <div className="flex flex-wrap justify-evenly mt-14 mr-auto mb-7 overflow-y-hidden">
 
-        <img src={ContactUs} className="w-1/4"></img>
+        <img src="contact-us.eef6a4fc.jpg?1691079156956" className="w-1/4"></img>
       
       <div className="flex flex-col items-center justify-center">
         <h3 className="font-bold text-2xl mb-4">Contact Us</h3>
@@ -37,7 +36,7 @@ const Contact = () => {
                     <input className="w-full focus:outline-none font-[icomoon]" placeholder="Message" ></input>
                 </div>                 
                 <button className="py-[6px] mt-5 px-5 rounded font-medium bg-orange-400 text-white">Send</button>
-                {message && <h1 className="pt-3 text-lg">Thanks for contacting Delo 🙂 we'll reply ASAP.</h1>}
+                {message && <h1 className="pt-3 text-lg">Thanks for contacting Delo ! We'll reply ASAP.</h1>}
               </form>
           </div>
     </div>
