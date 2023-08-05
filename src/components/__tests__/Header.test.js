@@ -5,6 +5,23 @@ import appStore from "./../../utils/appStore";
 import { BrowserRouter } from "react-router-dom";
 import "@testing-library/jest-dom";
 
+// it("Logo should load on rendering header", () => {
+//     // Load Header
+//     render(
+//         <BrowserRouter>
+//             <Provider store = {appStore}>
+//                 <Header/>
+//             </Provider>
+//         </BrowserRouter>
+    
+//     )
+  
+//     // Check if logo is loaded
+//     const logo = screen.getByTestId("logo");
+  
+//     expect(logo[0].src).toBe("http://localhost/dummy.png");
+
+//   });
 
 it("Should render Header component with a login button", () => {
     render(

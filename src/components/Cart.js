@@ -8,7 +8,7 @@ const Cart = () => {
  
     const cartItems = useSelector((store) => store.cart.items);
 
-    console.log(cartItems);
+    // console.log(cartItems);
 
     const dispatch = useDispatch();
 
@@ -49,7 +49,7 @@ const Cart = () => {
                         <div className="mt-2 text-sm">
                             <div className="flex w-2/5 py-2 justify-between">
                                 <span>Item Total : </span>
-                                <span>{totalPrice}</span>
+                                <span>₹ {totalPrice.toFixed(2)}</span>
                             </div>
                             <div className="flex w-2/5 py-2 justify-between">
                                 <span>Delivery Fee : </span>
@@ -58,7 +58,7 @@ const Cart = () => {
                             <hr className="w-2/5  border-black border-1"/>
                             <div className="flex w-2/5 py-2 justify-between">
                                 <span className="font-semibold tracking-wide">TO PAY : </span>
-                                <span className="font-semibold">{totalPrice}</span>
+                                <span className="font-semibold">₹ {totalPrice.toFixed(2)}</span>
                             </div>
                         </div>
                         

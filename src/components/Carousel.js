@@ -5,7 +5,7 @@ const Carousel = ({items}) => {
     
     // const {items} = props;
     const cardsData = items;
-    console.log(cardsData);
+    // console.log(cardsData);
     // const carouselId = ['pneknawbadtvceqzwiep','zpkkdkmvlj5cuvqbc50t','s5ug2key6e2sptaxku5v','ifi2lbzxeu1hvsqrsip3'];
     return (
         <div className="mx-24">
