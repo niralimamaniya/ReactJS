@@ -1,3 +1,4 @@
+import CONTACTIMG from "../assets/contact-us.jpg";
 import { useState } from "react";
 
 const Contact = () => {
@@ -12,7 +13,7 @@ const Contact = () => {
   return (
     <div className="flex flex-wrap justify-evenly mt-14 mr-auto mb-7 overflow-y-hidden">
 
-        <img src="contact-us.eef6a4fc.jpg?1691079156956" className="w-1/4"></img>
+        <img src={CONTACTIMG} data-testid="contact" className="w-1/4"></img>
       
       <div className="flex flex-col items-center justify-center">
         <h3 className="font-bold text-2xl mb-4">Contact Us</h3>

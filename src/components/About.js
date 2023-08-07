@@ -1,7 +1,16 @@
-import User from "./User";
+// import User from "./User";
 // import UserClass from "./UserClass";
 import React from "react";
 import { Link } from "react-router-dom";
+import PIZZA from "../assets/img_01.png";
+import MEAL from "../assets/img_02.png";
+import ROLLS from "../assets/img_03.png";
+import BURGER from "../assets/img_04.png";
+import COFFEE from "../assets/img_05.png";
+import DUMPLING from "../assets/img_06.png";
+import SANDWICH from "../assets/img_07.png";
+import NOODLES from "../assets/img_08.png";
+import SHAKE from "../assets/img_09.png";
 
 const About = () => {
     return (
@@ -11,15 +20,15 @@ const About = () => {
                     <h1 className="text-4xl font-bold font-sans ">Welcome to Delo</h1>
                     <p className="p-4 w-3/4 mt-4">&emsp;&emsp;&emsp;The ultimate food ordering app that brings your favorite flavors right to your doorstep. With Delo, you can discover a world of culinary delights and explore a wide range of restaurants and cuisines in your area. We partner with top-rated restaurants and prioritize quality, so you can savor every bite. </p>
                     <div className="w-2/4 flex flex-wrap justify-between gap-y-14 my-5">
-                        <img src="img_01.8fe68ca5.png?1691079156956" className="w-48 h-44 rounded-2xl"></img>
-                        <img src="img_02.e7270c31.png?1691079156956" className="w-48 h-44 rounded-2xl"></img>
-                        <img src="img_03.958db4c1.png?1691079156956" className="w-48 h-44 rounded-2xl"></img>
-                        <img src="img_04.13c44b9f.png?1691079156956" className="w-48 h-44 rounded-2xl"></img>
-                        <img src="img_05.5fe4d30b.png?1691079156956" className="w-48 h-44 rounded-2xl"></img>
-                        <img src="img_06.38c30bc2.png?1691079156956" className="w-48 h-44 rounded-2xl"></img>
-                        <img src="img_07.b622af9d.png?1691079156956" className="w-48 h-44 rounded-2xl"></img>
-                        <img src="img_08.00c87c2f.png?1691079156956" className="w-48 h-44 rounded-2xl"></img>
-                        <img src="img_09.8b45cd61.png?1691079156956" className="w-48 h-44 rounded-2xl"></img>
+                        <img src={PIZZA} data-testid="food-image" className="w-48 h-44 rounded-2xl"></img>
+                        <img src={MEAL} data-testid="food-image" className="w-48 h-44 rounded-2xl"></img>
+                        <img src={ROLLS} data-testid="food-image" className="w-48 h-44 rounded-2xl"></img>
+                        <img src={BURGER} data-testid="food-image" className="w-48 h-44 rounded-2xl"></img>
+                        <img src={COFFEE} data-testid="food-image" className="w-48 h-44 rounded-2xl"></img>
+                        <img src={DUMPLING} data-testid="food-image" className="w-48 h-44 rounded-2xl"></img>
+                        <img src={SANDWICH} data-testid="food-image" className="w-48 h-44 rounded-2xl"></img>
+                        <img src={NOODLES} data-testid="food-image" className="w-48 h-44 rounded-2xl"></img>
+                        <img src={SHAKE} data-testid="food-image" className="w-48 h-44 rounded-2xl"></img>
                     </div>
                     <h1 className="text-lg font-sans font-semibold mt-5">Designed and developed by Nirali Mamaniya</h1>
                     <ul className="flex items-center p-4">

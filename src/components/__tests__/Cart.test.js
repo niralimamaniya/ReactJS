@@ -72,5 +72,9 @@ it("Should contain clear cart button", async () => {
             </Provider>
         </BrowserRouter>
     ));
-    expect(screen.getByRole("button", {name : "Clear cart"})).toBeInTheDocument();
+    const clearCartBtn = screen.getByRole("button", {name : "Clear cart"})
+    expect(clearCartBtn).toBeInTheDocument();
+    fireEvent.click(clearCartBtn);
+    expect(screen.getByText("Cart - 0 items")).toBeInTheDocument();
 })
+

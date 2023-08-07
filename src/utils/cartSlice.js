@@ -7,43 +7,12 @@ const cartSlice = createSlice({
     },
     reducers: {
         addItem: (state, action) => {
-            // const cartItem = state.items.find(
-            //     (item) => item.id === action.payload.id
-            // );
-            // if(cartItem){
-            //     cartItem.itemCount++;
-            //     cartItem.isAddedToCart = true;
-            // } else {
-            //     state.items.push({
-            //         ...action.payload,
-            //         itemCount: 1,
-            //     })
-            // }
             // mutating the state here
             state.items.push(action.payload);
         },
-
-        // incrementItem: (state,action) => {
-        //     const cartItem = state.items.find(
-        //         (item) => item.id === action.payload.id
-        //     );
-        //     cartItem.itemCount++;
+        // removeItem: (state, action) => {
+        //     state.items = state.items.filter((item => item.id !== action.payload.id));
         // },
-        // decrementItem: (state,action) => {
-        //     const cartItem = state.items.find(
-        //         (item) => item.id === action.payload.id
-        //     );
-        //     if (cartItem.itemCount == 1) {
-        //         state.items = state.items.filter(
-        //           (item) => item.id !== action.payload.id
-        //     );
-        //     } else {
-        //        cartItem.itemCount--;
-        //     }
-        // },
-        removeItem: (state, action) => {
-            state.items = state.items.filter((item => item.id !== action.payload.id));
-        },
         clearCart: (state) => {
             state.items.length = 0;
         },
@@ -51,7 +20,7 @@ const cartSlice = createSlice({
     },
 });
 
-export const {addItem,removeItem,clearCart} = cartSlice.actions;  
+export const {addItem,clearCart} = cartSlice.actions;  
 
 export default cartSlice.reducer;
 

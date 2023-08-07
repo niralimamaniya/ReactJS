@@ -1,4 +1,4 @@
-// import Logo from "../assets/delo-logo.png";
+import Logo from "../assets/delo-logo.png";
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 // import UserContext from "../utils/UserContext";
@@ -14,7 +14,7 @@ const Header = () => {
     return (
         <div className="flex justify-between shadow-lg bg-white px-8">
             <div className="ml-14 my-6">
-                <img className="w-30 h-12 rounded" data-testid="logo" src="" alt="delo-logo"></img>
+                <img className="w-30 h-12 rounded" data-testid="logo" src={Logo} alt="delo-logo"></img>
             </div>
             <div className="flex items-center">
             <ul className="flex p-4 m-4">

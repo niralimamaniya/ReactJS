@@ -13,6 +13,13 @@ describe("Contact us Page test case", () => {
         // Assertion
         expect(heading).toBeInTheDocument();
     })
+    it("Should load Contact us image", () => {
+        render(<Contact/>)
+
+        // Querying
+        const contact = screen.getAllByTestId("contact");
+        expect(contact[0].src).toBe("http://localhost/dummy.png");
+    })
     it("Should find button inside Contact component", () => {
         render(<Contact/>)
     

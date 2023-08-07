@@ -2,7 +2,7 @@ import { render,screen } from "@testing-library/react"
 import RestaurantCard from "../RestaurantCard"
 import MOCK_DATA from "../../mocks/resCardMock.json";
 import "@testing-library/jest-dom"
-import { withPromotedLabel } from './../RestaurantCard';
+import { withPromotedLabel } from "../RestaurantCard";
 
 it("Should render restaurant data with props",() => {
     render(<RestaurantCard resData = {MOCK_DATA}/>);
@@ -12,13 +12,14 @@ it("Should render restaurant data with props",() => {
     expect(name).toBeInTheDocument();
 });
 
-// it("Should render restaurant card component with promoted label",() => {
-//     render(
-//         <withPromotedLabel RestaurantCard = {MOCK_DATA}/>
-//         );
+it("Should render restaurant card promoted component",() => {
+    render(
+        <RestaurantCard resData = {MOCK_DATA}>
+            <withPromotedLabel RestaurantCard/>
+        </RestaurantCard>
+    );
 
-//         // const promoted = screen.getByLabelText("Promoted");
-
-//         // expect(promoted).toBeInTheDocument();
+    // const promoted = screen.getByLabelText("Promoted");
+    // expect(promoted).toBeInTheDocument();
     
-// });
+});

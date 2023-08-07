@@ -1,5 +1,3 @@
-import ItemsShimmer from "./ItemsShimmer";
-
 const MenuShimmer = () => {
     return (
         <div className="mx-72 w-7/12 mt-10 h-64">

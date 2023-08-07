@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 const Cart = () => {
  
     const cartItems = useSelector((store) => store.cart.items);
-
     // console.log(cartItems);
 
     const dispatch = useDispatch();
@@ -39,7 +38,7 @@ const Cart = () => {
                 <div className="flex justify-between">
                     <h1 className="text-2xl font-bold tracking-wide">YOUR CART</h1>
                     <button className="px-2 py-1 rounded bg-orange-400 text-white " onClick={()=> clearMyCart()}>
-                    Clear cart
+                        Clear cart
                     </button>
                 </div>
                 <div className="mt-4">
