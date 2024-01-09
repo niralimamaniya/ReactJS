@@ -4,6 +4,7 @@ import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import Carousel from "./Carousel";
+import { SWIGGY_URL } from "../utils/constants";
 
 const Body = () => {
 
@@ -22,7 +23,7 @@ const Body = () => {
     const fetchData = async () => {
 
         const data = await fetch(
-            "https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.5177559&lng=73.81511119999999&page_type=DESKTOP_WEB_LISTING"
+            'https://corsproxy.org/?' + encodeURIComponent(SWIGGY_URL)
         );       
         
         const json = await data.json();
