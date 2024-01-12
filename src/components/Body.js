@@ -27,11 +27,15 @@ const Body = () => {
         );       
         
         const json = await data.json();
+        console.log(json);
         
         setCarouselData(json?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info);
-        setListOfRestaurants(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants); 
-        setFilteredRestaurants(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+
+        setListOfRestaurants(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        setFilteredRestaurants(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+
     }
+
     
     // To show whether user in online or offline
     const onlineStatus = useOnlineStatus();
@@ -45,7 +49,7 @@ const Body = () => {
         <Shimmer/> 
     ) : (
         <div className="body">  
-            <Carousel items={carouselData}/>
+            {/* <Carousel items={carouselData}/> */}
 
             {/* Search for restaurants and cuisines */}
             <div className="mx-16 mt-5 mb-6 p-2 text-center">
